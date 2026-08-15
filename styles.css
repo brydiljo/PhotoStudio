@@ -68,10 +68,20 @@ a {
 }
 
 .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
     font-family: var(--font-heading);
     font-size: 1.5rem;
     font-weight: 600;
     letter-spacing: 2px;
+}
+
+.logo-img {
+    height: 45px;
+    width: auto;
+    border-radius: 50%;
+    border: 2px solid var(--accent-gold);
 }
 
 .nav-links {
@@ -93,6 +103,7 @@ a {
 
 /* Hero Section */
 .hero {
+    position: relative;
     height: 100vh;
     display: flex;
     align-items: center;
@@ -101,9 +112,40 @@ a {
     background: radial-gradient(circle at center, #1a1a1a 0%, #0d0d0d 100%);
     padding: 0 2rem;
     margin-top: 60px; /* Offset for navbar */
+    overflow: hidden;
+}
+
+.floating-elements {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.float-item {
+    position: absolute;
+    font-size: 2.5rem;
+    opacity: 0.6;
+    animation: float 8s ease-in-out infinite;
+    filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
+}
+
+.float-item.hat { top: 20%; left: 15%; animation-delay: 0s; }
+.float-item.balloon { top: 60%; left: 10%; animation-delay: 2s; }
+.float-item.star1 { top: 30%; right: 20%; font-size: 1.5rem; animation-delay: 1s; }
+.float-item.star2 { top: 70%; right: 15%; font-size: 2rem; animation-delay: 3s; }
+.float-item.balloon2 { top: 25%; right: 10%; animation-delay: 4s; }
+.float-item.baby { bottom: 20%; left: 25%; animation-delay: 1.5s; font-size: 2rem; }
+
+@keyframes float {
+    0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.4; }
+    50% { transform: translateY(-30px) rotate(15deg) scale(1.1); opacity: 0.8; }
+    100% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.4; }
 }
 
 .hero-content {
+    position: relative;
+    z-index: 1;
     max-width: 800px;
     animation: fadeIn 1s ease-out;
 }
