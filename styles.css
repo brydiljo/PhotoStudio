@@ -191,49 +191,99 @@ section {
     border-color: var(--accent-gold);
 }
 
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-.gallery-item {
+/* Carousel Styles */
+.carousel-container {
     position: relative;
-    border-radius: 8px;
+    max-width: 900px;
+    margin: 0 auto;
     overflow: hidden;
-    cursor: pointer;
-    aspect-ratio: 4/5;
+    border-radius: 8px;
+    aspect-ratio: 16/10;
+    background-color: var(--bg-secondary);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
-.gallery-item img {
+.carousel-slide {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.carousel-slide img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
 }
 
-.gallery-item:hover img {
-    transform: scale(1.05);
-}
-
-.overlay {
+.carousel-overlay {
     position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    inset: auto 0 0 0;
+    padding: 3rem 1.5rem 1.5rem 1.5rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
     display: flex;
-    align-items: flex-end;
-    padding: 2rem;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    justify-content: center;
+    opacity: 1; /* Always visible text in carousel */
 }
 
-.gallery-item:hover .overlay {
-    opacity: 1;
-}
-
-.overlay h3 {
+.carousel-overlay h3 {
     font-size: 1.5rem;
     color: var(--accent-gold);
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 1rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: background 0.3s ease, color 0.3s ease;
+    z-index: 10;
+}
+
+.carousel-btn:hover {
+    background: var(--accent-gold);
+    color: #000;
+}
+
+.carousel-btn.prev {
+    left: 0;
+    border-radius: 0 4px 4px 0;
+}
+
+.carousel-btn.next {
+    right: 0;
+    border-radius: 4px 0 0 4px;
+}
+
+.carousel-dots {
+    position: absolute;
+    bottom: 5rem; /* Above the overlay text */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.8rem;
+    z-index: 10;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.dot.active, .dot:hover {
+    background-color: var(--accent-gold);
+    transform: scale(1.2);
 }
 
 /* Contact Form */
